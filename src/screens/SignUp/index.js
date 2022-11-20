@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
 
+import NavigationTop from '../../components/NavigationTop';
 import Input from '../../components/Input';
 import Checkbox from '../../components/Checkbox';
 import Button from '../../components/Button';
@@ -17,8 +18,16 @@ const FIELDS = [
         validators: [{ name: 'required', errorText: 'Помилка! Введіть ваш email.' }, { name: 'email', errorText: 'Помилка! Введіть валідний email.' }]
     },
     {
+        name: 'name',
+        validators: [{ name: 'required', errorText: 'Помилка! Введіть ваше імʼя.' }]
+    },
+    {
+        name: 'grade',
+        validators: [{ name: 'required', errorText: 'Помилка! Введіть назву вашого класу.' }]
+    },
+    {
         name: 'password',
-        validators: [{ name: 'required', errorText: 'Помилка! Введіть ваш пароль.' }]
+        validators: [{ name: 'required', errorText: 'Error! Please enter password.' }]
     }
 ];
 const FIELDS_MAP = FIELDS.reduce((result, field) => ({
@@ -26,7 +35,7 @@ const FIELDS_MAP = FIELDS.reduce((result, field) => ({
     [field.name]: field
 }), {});
 
-const SignIn = ({ navigation, route }) => {
+const SignUp = ({ navigation, route }) => {
     const [values, setValues] = useState({ remember: true, email: route.params?.email });
     const [errors, setErrors] = useState({});
     const handleChange = useCallback(name => value => {
@@ -37,10 +46,6 @@ const SignIn = ({ navigation, route }) => {
     }, []);
     const handleBlur = useCallback(name => () => {
         setErrors(errors => ({ ...errors, [name]: validateField(values[name], FIELDS_MAP[[name]]) }));
-    }, [values]);
-
-    const handleLinkClick = useCallback(() => {
-        navigation.navigate('SignUp');
     }, [values]);
 
     const handleSubmit = useCallback(() => {
@@ -57,7 +62,8 @@ const SignIn = ({ navigation, route }) => {
         <View style={styles.container}>
             <ScrollView>
                 <View style={styles.content}>
-                    <Text style={styles.title}>Вхід</Text>
+                    <NavigationTop backScreenName='GetStarted' />
+                    <Text style={styles.title}>Реєстрація</Text>
                     <View style={styles.field}>
                         <Input
                             label='Email'
@@ -73,6 +79,32 @@ const SignIn = ({ navigation, route }) => {
                     </View>
                     <View style={styles.field}>
                         <Input
+                            label='Імʼя'
+                            value={values.name}
+                            onChange={handleChange('name')}
+                            onFocus={handleFocus('name')}
+                            onBlur={handleBlur('name')}
+                            autoCompleteType='name'
+                            icon='user'
+                            error={errors.name}
+                            autoCapitalize='none'
+                        />
+                    </View>
+                    <View style={styles.field}>
+                        <Input
+                            label='Класс'
+                            value={values.grade}
+                            onChange={handleChange('grade')}
+                            onFocus={handleFocus('grade')}
+                            onBlur={handleBlur('grade')}
+                            autoCompleteType='email'
+                            icon='user'
+                            error={errors.grade}
+                            autoCapitalize='none'
+                        />
+                    </View>
+                    <View style={styles.field}>
+                        <Input
                             label='Пароль'
                             value={values.password}
                             onChange={handleChange('password')}
@@ -80,23 +112,22 @@ const SignIn = ({ navigation, route }) => {
                             onBlur={handleBlur('password')}
                             secureTextEntry
                             autoCompleteType='password'
-                            link={{ onPress: handleLinkClick, label: 'Немає акаунту?' }}
                             icon='password'
                             error={errors.password}
                             autoCapitalize='none'
                         />
                     </View>
-                    <Checkbox label='Запамʼятати мене' value={values.remember} onChange={handleChange('remember')} />
+                    <Checkbox label='Remember me' value={values.remember} onChange={handleChange('remember')} />
                 </View>
             </ScrollView>
             <View style={styles.button}>
-                <Button label='Log In' onPress={handleSubmit} />
+                <Button label='Sign Up' onPress={handleSubmit} />
             </View>
         </View>
     );
 };
 
-SignIn.propTypes = {
+SignUp.propTypes = {
     navigation: PropTypes.object.isRequired,
     route: PropTypes.object.isRequired
 };
@@ -117,8 +148,8 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 20,
         fontWeight: 'bold',
-        marginBottom: 20,
         marginTop: 80,
+        marginBottom: 20,
         color: COLORS.BLACK,
         fontFamily: FONTS.GILROY_BOLD
     },
@@ -132,4 +163,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default SignIn;
+export default SignUp;
