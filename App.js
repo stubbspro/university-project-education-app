@@ -10,8 +10,6 @@ import Community from './src/screens/Community';
 import SettingsMenu from './src/screens/SettingsMenu';
 import Notifications from './src/screens/Notifications';
 
-import Preloader from './src/components/Preloader';
-
 import getKeyboardBehaviorByOS from './src/utils/getKeyboardBehaviorByOS';
 
 import { createStackNavigator } from '@react-navigation/stack';
@@ -39,7 +37,7 @@ const App = () => {
     }, []);
 
     if (!loaded || preloaderShowed) {
-        return <Preloader />;
+        return null;
     }
 
     return <>
