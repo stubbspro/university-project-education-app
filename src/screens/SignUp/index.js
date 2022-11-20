@@ -62,7 +62,7 @@ const SignUp = ({ navigation, route }) => {
         <View style={styles.container}>
             <ScrollView>
                 <View style={styles.content}>
-                    <NavigationTop backScreenName='GetStarted' />
+                    <NavigationTop backScreenName='Sign in' label='Вхід' />
                     <Text style={styles.title}>Реєстрація</Text>
                     <View style={styles.field}>
                         <Input
@@ -92,7 +92,7 @@ const SignUp = ({ navigation, route }) => {
                     </View>
                     <View style={styles.field}>
                         <Input
-                            label='Класс'
+                            label='Клас'
                             value={values.grade}
                             onChange={handleChange('grade')}
                             onFocus={handleFocus('grade')}

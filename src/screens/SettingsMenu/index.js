@@ -9,17 +9,13 @@ import { COLORS, FONTS } from '../../styles/theme';
 const BUTTONS = [
     { icon: require('./icons/profile.png'), label: 'Редагувати профіль', screen: 'EditProfile' },
     { icon: require('./icons/paper.png'), label: 'Інформація', screen: 'Personality' },
-    { icon: require('./icons/exit.png'), label: 'Вийти', screen: 'logout' }
+    { icon: require('./icons/exit.png'), label: 'Вийти', screen: 'SignIn' }
 ];
 
 const arrowIcon = require('./icons/arrow.png');
 
 const SettingsMenu = ({ navigation }) => {
     const handleButtonClick = useCallback(screen => async () => {
-        if (screen === 'logout') {
-            navigation.navigate('SignIn');
-        }
-
         screen && navigation.navigate(screen);
     }, []);
 

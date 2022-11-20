@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { TouchableWithoutFeedback, StyleSheet, View, Text } from 'react-native';
+import { TouchableOpacity, StyleSheet, View, Text } from 'react-native';
 
 import { COLORS, FONTS } from '../../styles/theme';
 
 const Button = ({ label, onPress, type }) => {
     return (
-        <TouchableWithoutFeedback onPress={onPress}>
+        <TouchableOpacity onPress={onPress}>
             <View style={[styles.button, type === 'buttonLight' && styles.buttonLight, type === 'link' && styles.buttonLink]}>
                 <Text style={[styles.buttonLabel, type === 'buttonLight' && styles.buttonLabelLight, type === 'link' && styles.buttonLabelLink]}>{label}</Text>
             </View>
-        </TouchableWithoutFeedback>
+        </TouchableOpacity>
     );
 };
 

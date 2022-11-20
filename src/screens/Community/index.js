@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 
-import { StyleSheet, View, ScrollView, Image, TouchableOpacity, TouchableWithoutFeedback, Text } from 'react-native';
+import { StyleSheet, View, ScrollView, Image, TouchableOpacity, Text } from 'react-native';
 
 import NavigationTop from '../../components/NavigationTop';
 import Input from '../../components/Input';
@@ -56,7 +56,7 @@ const Community = () => {
                                 data={users}
                                 renderItem={data => {
                                     return (
-                                        <TouchableWithoutFeedback key={data.item.name}>
+                                        <TouchableOpacity key={data.item.name}>
                                             <View style={styles.row}>
                                                 <Image source={data.item.avatar} style={styles.rowPhoto} />
                                                 <View style={styles.rowInfo}>
@@ -67,7 +67,7 @@ const Community = () => {
                                                     </View>
                                                 </View>
                                             </View>
-                                        </TouchableWithoutFeedback>
+                                        </TouchableOpacity>
                                     );
                                 }}
                                 renderHiddenItem={() => (

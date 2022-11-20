@@ -92,7 +92,9 @@ const styles = StyleSheet.create({
     },
     labelContainer: {
         justifyContent: 'center',
-        width: '100%'
+        width: '100%',
+        position: 'relative',
+        top: 10
     },
     label: {
         textAlign: 'center',
