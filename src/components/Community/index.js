@@ -61,7 +61,7 @@ const Community = ({ users }) => {
                     renderItem={renderItem}
                     numColumns={numColumns}
                     contentContainerStyle={{ flexGrow: 1 }}
-                    keyExtractor={user => user._id}
+                    keyExtractor={(user, index) => index}
                 />
             </View>
         </View>

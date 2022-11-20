@@ -48,7 +48,7 @@ const App = () => {
             style={{ flex: 1 }}
         >
             <NavigationContainer>
-                <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="Profile">
+                <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="SignIn">
                     <Stack.Screen name="SignIn" component={SignIn} />
                     <Stack.Screen name="SignUp" component={SignUp} />
                     <Stack.Screen name="Profile" component={Profile} />
